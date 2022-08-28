@@ -22,7 +22,7 @@ provider:
 
 
 custom:
-  postsTableName: posts-table-${{self:provider.stage}}
+  postsTableName: posts-table-${self:provider.stage}
 
 plugins:
   - serverless-iam-roles-per-function
