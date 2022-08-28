@@ -43,6 +43,6 @@ jobs:
           npm i
           fi
       
-      - name: auto deploy 
-        run: |
-          serverless deploy --stage dev --region ap-northeast-1
+      # - name: auto deploy 
+      #   run: |
+      #     serverless deploy --stage dev --region ap-northeast-1
