@@ -7,6 +7,19 @@ provider:
   region: ap-northeast-1
   environment:
     DYNAMODB_TABLE_NAME: ${{self:custom.postsTableName}}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action: [
+        "dynamodb:DescribeTable",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+      ],
+      Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
+
 
 custom:
   postsTableName: posts-table-${{self:provider.stage}}
@@ -24,12 +37,7 @@ functions:
       - http:
           path: post/{postId}
           method: GET
-    iamRoleStatements:
-      - Effect: "Allow"
-        Actions: 
-          - "dynamodb: GetItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
-  
+
   createPost:
     handler: src/index.createPost
     name: createPost
@@ -39,11 +47,6 @@ functions:
       - http:
           path: post/create
           method: POST
-    iamRoleStatements:
-      - Effect: "Allow"
-        Actions: 
-          - "dynamodb: PutItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
   updatePost:
     handler: src/index.updatePost
@@ -54,12 +57,7 @@ functions:
       - http:
           path: post/{postId}
           method: PUT
-    iamRoleStatements:
-      - Effect: "Allow"
-        Actions: 
-          - "dynamodb: UpdateItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
-        
+
   deletePost:
     handler: src/index.deletePost
     name: deletePost
@@ -69,11 +67,6 @@ functions:
       - http:
           path: post/{postId}
           method: DELETE
-    iamRoleStatements:
-      - Effect: "Allow"
-        Actions: 
-          - "dynamodb: DeleteItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
   getAllPost:
     handler: src/index.getAllPost
@@ -84,11 +77,6 @@ functions:
       - http:
           path: posts
           method: DELETE
-    iamRoleStatements:
-      - Effect: "Allow"
-        Actions: 
-          - "dynamodb: Scan"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
 resources:
   Resources: 
