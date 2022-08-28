@@ -6,20 +6,7 @@ provider:
   stage: api
   region: ap-northeast-1
   environment:
-    DYNAMODB_TABLE_NAME: ${{self:custom.postsTableName}}
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action: [
-        "dynamodb:DescribeTable",
-        "dynamodb:Query",
-        "dynamodb:Scan",
-        "dynamodb:GetItem",
-        "dynamodb:PutItem",
-        "dynamodb:UpdateItem",
-        "dynamodb:DeleteItem",
-      ]
-      Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/${{self:custom.postsTableName}}"
-
+    DYNAMODB_TABLE_NAME: ${self:custom.postsTableName}
 
 custom:
   postsTableName: posts-table-${self:provider.stage}
@@ -37,6 +24,11 @@ functions:
       - http:
           path: post/{postId}
           method: GET
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:GetItem"
+        Resource: !GetAtt PostsTable.Arn
 
   createPost:
     handler: src/index.createPost
@@ -47,6 +39,11 @@ functions:
       - http:
           path: post/create
           method: POST
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:PutItem"
+        Resource: !GetAtt PostsTable.Arn
 
   updatePost:
     handler: src/index.updatePost
@@ -57,6 +54,11 @@ functions:
       - http:
           path: post/{postId}
           method: PUT
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:UpdateItem"
+        Resource: !GetAtt PostsTable.Arn
 
   deletePost:
     handler: src/index.deletePost
@@ -67,6 +69,11 @@ functions:
       - http:
           path: post/{postId}
           method: DELETE
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:DeleteItem"
+        Resource: !GetAtt PostsTable.Arn
 
   getAllPost:
     handler: src/index.getAllPost
@@ -77,6 +84,11 @@ functions:
       - http:
           path: posts
           method: DELETE
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Scan"
+        Resource: !GetAtt PostsTable.Arn
 
 resources:
   Resources: 
