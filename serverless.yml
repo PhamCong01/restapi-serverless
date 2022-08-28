@@ -28,7 +28,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: GetItem"
-        Rescource: !GetAtt PostsTable.Arn
+        Resource: !GetAtt PostsTable.Arn
   
   createPost:
     handler: src/index.createPost
@@ -43,7 +43,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: PutItem"
-        Rescource: !GetAtt PostsTable.Arn
+        Resource: !GetAtt PostsTable.Arn
 
   updatePost:
     handler: src/index.updatePost
@@ -58,7 +58,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: UpdateItem"
-        Rescource: !GetAtt PostsTable.Arn
+        Resource: !GetAtt PostsTable.Arn
         
   deletePost:
     handler: src/index.deletePost
@@ -73,7 +73,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: DeleteItem"
-        Rescource: !GetAtt PostsTable.Arn
+        Resource: !GetAtt PostsTable.Arn
 
   getAllPost:
     handler: src/index.getAllPost
@@ -88,7 +88,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: Scan"
-        Rescource: !GetAtt PostsTable.Arn
+        Resource: !GetAtt PostsTable.Arn
 
 resources:
   Resources: 
