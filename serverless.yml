@@ -17,7 +17,7 @@ provider:
         "dynamodb:PutItem",
         "dynamodb:UpdateItem",
         "dynamodb:DeleteItem",
-      ],
+      ]
       Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
 
