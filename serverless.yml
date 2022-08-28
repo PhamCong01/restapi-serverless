@@ -18,7 +18,7 @@ provider:
         "dynamodb:UpdateItem",
         "dynamodb:DeleteItem",
       ]
-      Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
+      Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/${{self:custom.postsTableName}}"
 
 
 custom:
@@ -86,10 +86,10 @@ resources:
         TableName: ${self:custom.postsTableName}
         AttributeDefinitions:
           - AttributeName: postId
-            AtrributeType: S
+            AttributeType: S
         KeySchema: 
           - AttributeName: postId
             KeyType: HASH
-        ProvisonedThroughput: 
+        ProvisionedThroughput: 
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
