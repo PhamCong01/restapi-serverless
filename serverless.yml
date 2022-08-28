@@ -16,7 +16,7 @@ plugins:
 
 functions:
   getPost:
-    handler: src/index.getPost
+    handler: index.getPost
     name: getPost
     memorySire: 128 #mb
     timeout: 5 #seconds
@@ -31,7 +31,7 @@ functions:
         Resource: !GetAtt PostsTable.Arn
 
   createPost:
-    handler: src/index.createPost
+    handler: index.createPost
     name: createPost
     memorySire: 123 #mb
     timeout: 5 #seconds
@@ -46,7 +46,7 @@ functions:
         Resource: !GetAtt PostsTable.Arn
 
   updatePost:
-    handler: src/index.updatePost
+    handler: index.updatePost
     name: updatePost
     memorySire: 123 #mb
     timeout: 5 #seconds
@@ -61,7 +61,7 @@ functions:
         Resource: !GetAtt PostsTable.Arn
 
   deletePost:
-    handler: src/index.deletePost
+    handler: index.deletePost
     name: deletePost
     memorySire: 123 #mb
     timeout: 5 #seconds
@@ -76,7 +76,7 @@ functions:
         Resource: !GetAtt PostsTable.Arn
 
   getAllPost:
-    handler: src/index.getAllPost
+    handler: index.getAllPost
     name: getAllPost
     memorySire: 123 #mb
     timeout: 5 #seconds

@@ -1,4 +1,4 @@
-const db = require("../DynamoDb/data");
+const db = require("./DynamoDb/data");
 const dotenv = require("dotenv");
 dotenv.config();
 const {
