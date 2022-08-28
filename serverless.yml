@@ -28,7 +28,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: GetItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:913831160226:table/restApi-auto-deloy"
+        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
   
   createPost:
     handler: src/index.createPost
@@ -43,7 +43,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: PutItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:913831160226:table/restApi-auto-deloy"
+        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
   updatePost:
     handler: src/index.updatePost
@@ -58,7 +58,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: UpdateItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:913831160226:table/restApi-auto-deloy"
+        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
         
   deletePost:
     handler: src/index.deletePost
@@ -73,7 +73,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: DeleteItem"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:913831160226:table/restApi-auto-deloy"
+        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
   getAllPost:
     handler: src/index.getAllPost
@@ -88,7 +88,7 @@ functions:
       - Effect: "Allow"
         Actions: 
           - "dynamodb: Scan"
-        Resource: "arn:aws:dynamodb:${{self:provider.region}}:913831160226:table/restApi-auto-deloy"
+        Resource: "arn:aws:dynamodb:${{self:provider.region}}:*:table/restApi-auto-deloy"
 
 resources:
   Resources: 
