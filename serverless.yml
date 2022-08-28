@@ -83,7 +83,7 @@ functions:
     events: 
       - http:
           path: posts
-          method: DELETE
+          method: GET
     iamRoleStatements:
       - Effect: "Allow"
         Action:
